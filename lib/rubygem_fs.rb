@@ -1,5 +1,4 @@
 module RubygemFs
-
   def self.instance
     @fs ||=
       if Rails.env.development?
@@ -20,7 +19,7 @@ module RubygemFs
   def self.s3!(host)
     uri = URI(host)
     @fs = RubygemFs::S3.new
-    s3 = @fs.s3(access_key_id: 'k', secret_access_key: 's',  proxy: {host: uri.host, port: uri.port})
+    s3 = @fs.s3(access_key_id: 'k', secret_access_key: 's', proxy: {host: uri.host, port: uri.port})
     s3.buckets.build(Gemcutter.config['s3_bucket']).save
   end
 
